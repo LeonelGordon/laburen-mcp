@@ -2,18 +2,20 @@
  * For more details on how to configure Wrangler, refer to:
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
-{
+ {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "remote-mcp-server-authless",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-03-10",
 	"compatibility_flags": ["nodejs_compat"],
+
 	"migrations": [
 		{
 			"new_sqlite_classes": ["MyMCP"],
 			"tag": "v1"
 		}
 	],
+
 	"durable_objects": {
 		"bindings": [
 			{
@@ -22,6 +24,15 @@
 			}
 		]
 	},
+
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "laburen_db",
+			"database_id": "5b1c68c3-ffc8-40a9-b2ed-612c4e8e16ae"
+		}
+	],
+
 	"observability": {
 		"enabled": true
 	}
