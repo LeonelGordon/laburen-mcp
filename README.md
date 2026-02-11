@@ -1,36 +1,35 @@
-Laburen MCP
+#  Laburen MCP
 
-MCP desarrollado para el challenge técnico de AI Engineer – Laburen.
+MCP desarrollado para el challenge técnico de **AI Engineer – Laburen**.
 
-Implementa un agente de compras con:
+Agente de compras construido sobre MCP con capacidades de:
 
-Exploración de productos
+-  Exploración de productos  
+-  Carrito por conversación  
+-  Filtros por texto y precio  
+-  Derivación a humano vía Chatwoot  
+-  Deploy serverless en Cloudflare  
 
-Carrito por conversación
+---
 
-Filtros por texto y precio
+## Arquitectura / Stack
 
-Derivación a humano vía Chatwoot
+- Cloudflare Workers (MCP runtime)  
+- D1 (SQLite)  
+- Chatwoot API  
+- Wrangler  
 
-Deploy serverless en Cloudflare
+---
 
-Stack
+##  Funcionalidades
 
-Cloudflare Workers (MCP runtime)
+### Productos
 
-D1 (SQLite)
+**Tool**
 
-Chatwoot API
-
-Wrangler
-
-Funcionalidades
-Productos
-
-Tool
-
+```text
 list_products
-
+Incluye:
 
 Búsqueda por nombre / descripción
 
@@ -39,61 +38,50 @@ Matching sin tildes
 Filtros opcionales por precio
 
 Carrito
-
 Un carrito por conversación:
 
 create_cart
 update_cart
 get_cart
 
-Handoff humano
+Handoff a humano
 handoff_to_human
+Acciones realizadas:
 
+Parseo de conversation_id (incluye IDs decorados)
 
-Acciones:
+Aplicación automática del label handoff
 
-Parseo del conversation_id (incluye IDs decorados)
+Creación de nota privada con contexto del agente
 
-Label handoff
-
-Nota privada con contexto
-
-Apertura de conversación para agente humano
+Apertura de conversación para atención humana
 
 Deploy
 npm install
 npx wrangler deploy
-
-Logs / Debug
-
+Observabilidad / Logs
 Logs en tiempo real:
 
 npx wrangler tail
+Permite inspeccionar:
 
+Ejecución de tools MCP
 
-Permite ver:
-
-Ejecución de tools
-
-Requests a Chatwoot
+Requests hacia Chatwoot
 
 Errores HTTP
 
-Tiempos de respuesta
+Latencias y tiempos de respuesta
 
-Usado durante el desarrollo para validar handoff y flujos MCP.
+Utilizado durante el desarrollo para validar flujos MCP y handoff humano.
 
 Secrets
-
-Token Chatwoot:
+Configuración del token de Chatwoot:
 
 npx wrangler secret put CHATWOOT_API_TOKEN
-
-
-Acceso desde Worker:
+Acceso desde el Worker:
 
 this.env.CHATWOOT_API_TOKEN
 
 Autor
-
-Leonel Gordon – Argentina
+Leonel Gordon
